@@ -1,0 +1,9 @@
+GET localhost:8081/customer/1
+Accept: application/json
+
+###
+
+GET localhost:8081/customer/99
+Accept: application/json
+
+###
