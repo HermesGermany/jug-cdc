@@ -1,0 +1,6 @@
+GET http://localhost:8082/hello/1
+
+###
+GET http://localhost:8082/hello/99
+
+###
