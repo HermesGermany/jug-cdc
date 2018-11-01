@@ -4,6 +4,7 @@ import au.com.dius.pact.provider.junit.Provider;
 import au.com.dius.pact.provider.junit.State;
 import au.com.dius.pact.provider.junit.VerificationReports;
 import au.com.dius.pact.provider.junit.loader.PactBroker;
+import au.com.dius.pact.provider.junit.loader.PactFolder;
 import au.com.dius.pact.provider.junit.target.HttpTarget;
 import au.com.dius.pact.provider.junit.target.TestTarget;
 import au.com.dius.pact.provider.spring.SpringRestPactRunner;
@@ -23,7 +24,7 @@ import static org.mockito.Mockito.when;
 @Provider("hermes-jug-provider")
 @PactBroker(host = "localhost", port = "80")
 //@PactFolder(value = "pacts")
-@VerificationReports({"console", "markdown", "json"}) // creates verification reports in target/pact/reports
+@VerificationReports({"console", "markdown", "json"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ProviderPactTestMockedServices {
 
@@ -40,7 +41,7 @@ public class ProviderPactTestMockedServices {
         CustomerDto customer = CustomerDto.builder()
                 .firstname("Helga")
                 .lastname("Schmidt")
-                //                .address("Hamburg") //todo
+//              .address("Hamburg") //todo
                 .build();
 
         when(getCustomerServiceMock.getCustomerById(5)).thenReturn(customer);
@@ -53,7 +54,7 @@ public class ProviderPactTestMockedServices {
         CustomerDto customer = CustomerDto.builder()
                 .firstname("Peter")
                 .lastname("Hermes")
-                //                .address("Hamburg") //todo
+//              .address("Hamburg") //todo
                 .build();
 
         when(getCustomerServiceMock.getCustomerById(1)).thenReturn(customer);
@@ -62,8 +63,9 @@ public class ProviderPactTestMockedServices {
     @State("No customer with id 99")
     public void setupNoCustomerWithId99() {
         log.info("Create state: 'No customer with id 99'");
-        when(getCustomerServiceMock.getCustomerById(99)).thenThrow(new CustomerNotFoundException());
-    }
 
+        when(getCustomerServiceMock.getCustomerById(99))
+                .thenThrow(new CustomerNotFoundException());
+    }
 
 }

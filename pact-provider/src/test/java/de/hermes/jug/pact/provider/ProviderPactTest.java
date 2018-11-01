@@ -4,6 +4,7 @@ import au.com.dius.pact.provider.junit.Provider;
 import au.com.dius.pact.provider.junit.State;
 import au.com.dius.pact.provider.junit.VerificationReports;
 import au.com.dius.pact.provider.junit.loader.PactBroker;
+import au.com.dius.pact.provider.junit.loader.PactFolder;
 import au.com.dius.pact.provider.junit.target.HttpTarget;
 import au.com.dius.pact.provider.junit.target.TestTarget;
 import au.com.dius.pact.provider.spring.SpringRestPactRunner;
@@ -20,7 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Provider("hermes-jug-provider")
 @PactBroker(host = "localhost", port = "80")
 //@PactFolder(value = "pacts")
-@VerificationReports({"console", "markdown", "json"}) // creates verification reports in target/pact/reports
+@VerificationReports({"console", "markdown", "json"})
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ProviderPactTest {
 
@@ -38,7 +39,7 @@ public class ProviderPactTest {
                 .id(5)
                 .firstname("Helga")
                 .lastname("Schmidt")
-                //                .address("Hamburg") //todo
+                .address("Hamburg")
                 .build();
 
         customerRepository.save(customer);
@@ -52,7 +53,7 @@ public class ProviderPactTest {
                 .id(1)
                 .firstname("Peter")
                 .lastname("Hermes")
-//                .address("Hamburg") //todo
+                .address("Hamburg")
                 .build();
 
         customerRepository.save(customer);
@@ -62,8 +63,5 @@ public class ProviderPactTest {
     public void setupNoCustomerWithId99() {
         log.info("Create state: 'No customer with id 99'");
     }
-
-
-
 
 }

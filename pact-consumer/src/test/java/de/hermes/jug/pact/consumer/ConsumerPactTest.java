@@ -29,7 +29,8 @@ public class ConsumerPactTest {
 
     @Rule
     public PactProviderRuleMk2 mockProvider =
-            new PactProviderRuleMk2("hermes-jug-provider", "localhost", 7081, this);
+            new PactProviderRuleMk2("hermes-jug-provider",
+                    "localhost", 7081, this);
 
     @Autowired
     ObjectMapper mapper;
@@ -37,7 +38,8 @@ public class ConsumerPactTest {
     @Autowired
     GetCustomerService serviceUnderTest;
 
-    @Pact(consumer = "hermes-jug-consumer", provider = "hermes-jug-provider")
+    @Pact(consumer = "hermes-jug-consumer",
+            provider = "hermes-jug-provider")
     public RequestResponsePact getCustomer(PactDslWithProvider builder) {
 
         DslPart body = new PactDslJsonBody()
@@ -58,7 +60,8 @@ public class ConsumerPactTest {
     }
 
     @SneakyThrows
-    @Pact(consumer = "hermes-jug-consumer", provider = "hermes-jug-provider")
+    @Pact(consumer = "hermes-jug-consumer",
+            provider = "hermes-jug-provider")
     public RequestResponsePact getCustomerExact(PactDslWithProvider builder) {
 
         CustomerDto customer = CustomerDto.builder()
@@ -69,12 +72,13 @@ public class ConsumerPactTest {
 
         return builder
                 .given("Peter Hermes is a customer with id 1")
-                .uponReceiving("receiving the customer (Peter Hermes) with id 1")
+                .uponReceiving("receiving customer (Peter Hermes) with id 1")
                 .method("GET")
                 .path("/customer/1")
                 .willRespondWith()
                 .status(200)
-                .body(mapper.writeValueAsString(customer), MediaType.APPLICATION_JSON_VALUE)
+                .body(mapper.writeValueAsString(customer),
+                        MediaType.APPLICATION_JSON_VALUE)
                 .toPact();
     }
 
@@ -83,7 +87,7 @@ public class ConsumerPactTest {
 
         return builder
                 .given("No customer with id 99")
-                .uponReceiving("receiving the customer with id 99")
+                .uponReceiving("receiving customer with id 99")
                 .method("GET")
                 .path("/customer/99")
                 .willRespondWith()
@@ -105,6 +109,7 @@ public class ConsumerPactTest {
     public void testGetCustomerExact() {
         CustomerDto customerById = serviceUnderTest.getCustomerById(1);
         assert "Peter".equals(customerById.getFirstname());
+        assert "Hermes".equals(customerById.getLastname());
 
         assertThatCode(
                 () -> serviceUnderTest.getCustomerById(1))
