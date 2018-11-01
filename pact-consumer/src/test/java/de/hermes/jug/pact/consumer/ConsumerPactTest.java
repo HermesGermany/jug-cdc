@@ -110,6 +110,7 @@ public class ConsumerPactTest {
         CustomerDto customerById = serviceUnderTest.getCustomerById(1);
         assert "Peter".equals(customerById.getFirstname());
         assert "Hermes".equals(customerById.getLastname());
+//        assert "Hamburg".equals(customerById.getAddress());
 
         assertThatCode(
                 () -> serviceUnderTest.getCustomerById(1))

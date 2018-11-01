@@ -7,12 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerConverter implements Converter<Customer, CustomerDto> {
-    @Override
-    public CustomerDto convert(Customer customer) {
-        return CustomerDto.builder()
-                .firstname(customer.getFirstname())
-                .lastname(customer.getLastname())
-//                .address(customer.getAddress()) //todo
-                .build();
-    }
+  @Override
+  public CustomerDto convert(Customer customer) {
+    return CustomerDto.builder()
+            .firstname(customer.getFirstname())
+            .lastname(customer.getLastname())
+            //                .address(customer.getAddress()) //todo
+            .build();
+  }
 }

@@ -10,11 +10,11 @@ import org.springframework.web.client.RestTemplate;
 @Getter
 public class ConsumerConfig {
 
-    @Value("${de.hermes.jug.provider.port}")
-    private String providerPort;
+  @Value("${de.hermes.jug.provider.port}")
+  private String providerPort;
 
-    @Bean
-    RestTemplate getRestTemplate(){
-        return new RestTemplate();
-    }
+  @Bean
+  RestTemplate getRestTemplate() {
+    return new RestTemplate();
+  }
 }

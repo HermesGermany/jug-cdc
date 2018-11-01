@@ -28,44 +28,44 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ProviderPactTestMockedServices {
 
-    @TestTarget
-    public final HttpTarget target = new HttpTarget(7081);
+  @TestTarget
+  public final HttpTarget target = new HttpTarget(7081);
 
-    @MockBean
-    private GetCustomerService getCustomerServiceMock;
+  @MockBean
+  private GetCustomerService getCustomerServiceMock;
 
-    @State("A customer with id 5")
-    public void setupCustomerWithId5() {
-        log.info("Create state: 'A customer with id 5'");
+  @State("A customer with id 5")
+  public void setupCustomerWithId5() {
+    log.info("Create state: 'A customer with id 5'");
 
-        CustomerDto customer = CustomerDto.builder()
-                .firstname("Helga")
-                .lastname("Schmidt")
-//              .address("Hamburg") //todo
-                .build();
+    CustomerDto customer = CustomerDto.builder()
+            .firstname("Helga")
+            .lastname("Schmidt")
+//          .address("Hamburg") //todo
+            .build();
 
-        when(getCustomerServiceMock.getCustomerById(5)).thenReturn(customer);
-    }
+    when(getCustomerServiceMock.getCustomerById(5)).thenReturn(customer);
+  }
 
-    @State("Peter Hermes is a customer with id 1")
-    public void setupExactCustomerWithId1() {
-        log.info("Create state: 'Peter Hermes is a customer with id 1'");
+  @State("Peter Hermes is a customer with id 1")
+  public void setupExactCustomerWithId1() {
+    log.info("Create state: 'Peter Hermes is a customer with id 1'");
 
-        CustomerDto customer = CustomerDto.builder()
-                .firstname("Peter")
-                .lastname("Hermes")
-//              .address("Hamburg") //todo
-                .build();
+    CustomerDto customer = CustomerDto.builder()
+            .firstname("Peter")
+            .lastname("Hermes")
+            //              .address("Hamburg") //todo
+            .build();
 
-        when(getCustomerServiceMock.getCustomerById(1)).thenReturn(customer);
-    }
+    when(getCustomerServiceMock.getCustomerById(1)).thenReturn(customer);
+  }
 
-    @State("No customer with id 99")
-    public void setupNoCustomerWithId99() {
-        log.info("Create state: 'No customer with id 99'");
+  @State("No customer with id 99")
+  public void setupNoCustomerWithId99() {
+    log.info("Create state: 'No customer with id 99'");
 
-        when(getCustomerServiceMock.getCustomerById(99))
-                .thenThrow(new CustomerNotFoundException());
-    }
+    when(getCustomerServiceMock.getCustomerById(99))
+            .thenThrow(new CustomerNotFoundException());
+  }
 
 }

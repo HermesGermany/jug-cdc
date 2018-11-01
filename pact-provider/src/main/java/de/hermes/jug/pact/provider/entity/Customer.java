@@ -17,15 +17,15 @@ import java.io.Serializable;
 @Builder
 public class Customer implements Serializable {
 
-    @Id
-    private Integer id;
+  @Id
+  private Integer id;
 
-    @Column
-    private String firstname;
+  @Column
+  private String firstname;
 
-    @Column
-    private String lastname;
+  @Column
+  private String lastname;
 
-    @Column
-    private String address;
+  @Column
+  private String address;
 }

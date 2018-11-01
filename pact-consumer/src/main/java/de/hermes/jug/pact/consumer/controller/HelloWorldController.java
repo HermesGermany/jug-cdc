@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "/hello")
 public class HelloWorldController {
 
-    private GetCustomerService getCustomerService;
+  private GetCustomerService getCustomerService;
 
-    @GetMapping(path = "/{id}")
-    @ResponseStatus(value = HttpStatus.OK)
-    public String getCustomer(@PathVariable("id") Integer id) {
-        CustomerDto customer = getCustomerService.getCustomerById(id);
+  @GetMapping(path = "/{id}")
+  @ResponseStatus(value = HttpStatus.OK)
+  public String getCustomer(@PathVariable("id") Integer id) {
+    CustomerDto customer = getCustomerService.getCustomerById(id);
 
-        String helloWorld = "Hello world,"
-                + " " + customer.getFirstname()
-                + " " + customer.getLastname()
-//                + " " + customer.getAddress() //todo
-                ;
-        log.info(helloWorld);
-        return helloWorld;
-    }
+    String helloWorld = "Hello world,"
+            + " " + customer.getFirstname()
+            + " " + customer.getLastname()
+            //                + " " + customer.getAddress() //todo
+            ;
+    log.info(helloWorld);
+    return helloWorld;
+  }
 }

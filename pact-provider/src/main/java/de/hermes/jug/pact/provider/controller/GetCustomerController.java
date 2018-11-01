@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/customer")
 public class GetCustomerController {
 
-    private GetCustomerService getCustomerService;
+  private GetCustomerService getCustomerService;
 
-    @GetMapping(path = "/{id}")
-    public ResponseEntity<CustomerDto> getCustomer(@PathVariable("id") int id) {
-        log.info("Getting customer {}", id);
-        CustomerDto customer = getCustomerService.getCustomerById(id);
-        return ResponseEntity.ok(customer);
-    }
+  @GetMapping(path = "/{id}")
+  public ResponseEntity<CustomerDto> getCustomer(@PathVariable("id") int id) {
+    log.info("Getting customer {}", id);
+    CustomerDto customer = getCustomerService.getCustomerById(id);
+    return ResponseEntity.ok(customer);
+  }
 }

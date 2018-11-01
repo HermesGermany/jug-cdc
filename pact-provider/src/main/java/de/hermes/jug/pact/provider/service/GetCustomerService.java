@@ -14,16 +14,16 @@ import java.util.Optional;
 @Service
 public class GetCustomerService {
 
-    private CustomerRepository customerRepository;
-    private ConversionService conversionService;
+  private CustomerRepository customerRepository;
+  private ConversionService conversionService;
 
-    public CustomerDto getCustomerById(int id) {
-        Optional<Customer> customer = customerRepository.findById(id);
-        if (!customer.isPresent()) {
-            throw new CustomerNotFoundException();
-        }
-
-        CustomerDto customerDto = conversionService.convert(customer.get(), CustomerDto.class);
-        return customerDto;
+  public CustomerDto getCustomerById(int id) {
+    Optional<Customer> customer = customerRepository.findById(id);
+    if (!customer.isPresent()) {
+      throw new CustomerNotFoundException();
     }
+
+    CustomerDto customerDto = conversionService.convert(customer.get(), CustomerDto.class);
+    return customerDto;
+  }
 }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ControllerAdvice
 public class CatchAllControllerAdvice {
 
-    @ExceptionHandler(CustomerNotFoundException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void customerNotFound(CustomerNotFoundException ex){
-      log.debug("Customer not found", ex);
-    }
+  @ExceptionHandler(CustomerNotFoundException.class)
+  @ResponseStatus(value = HttpStatus.NOT_FOUND)
+  public void customerNotFound(CustomerNotFoundException ex) {
+    log.debug("Customer not found", ex);
+  }
 }

@@ -14,18 +14,18 @@ import java.net.URI;
 @Service
 public class GetCustomerService {
 
-    private RestTemplate restTemplate;
-    private ConsumerConfig consumerConfig;
+  private RestTemplate restTemplate;
+  private ConsumerConfig consumerConfig;
 
-    public CustomerDto getCustomerById(int id) {
+  public CustomerDto getCustomerById(int id) {
 
-        CustomerDto customer;
-        URI url = URI.create("http://localhost:" + consumerConfig.getProviderPort() + "/customer/" + id);
-        try {
-            customer = restTemplate.getForObject(url, CustomerDto.class);
-        } catch (HttpClientErrorException ex) {
-            throw new CustomerNotFoundException();
-        }
-        return customer;
+    CustomerDto customer;
+    URI url = URI.create("http://localhost:" + consumerConfig.getProviderPort() + "/customer/" + id);
+    try {
+      customer = restTemplate.getForObject(url, CustomerDto.class);
+    } catch (HttpClientErrorException ex) {
+      throw new CustomerNotFoundException();
     }
+    return customer;
+  }
 }
