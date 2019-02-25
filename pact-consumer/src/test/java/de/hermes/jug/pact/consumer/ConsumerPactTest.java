@@ -45,7 +45,7 @@ public class ConsumerPactTest {
         DslPart body = new PactDslJsonBody()
                 .stringType("firstname")
                 .stringType("lastname")
-//              .stringType("address") //todo
+                // .stringType("address") //todo
                 ;
 
         return builder
@@ -67,7 +67,7 @@ public class ConsumerPactTest {
         CustomerDto customer = CustomerDto.builder()
                 .firstname("Peter")
                 .lastname("Hermes")
-//              .address("Hamburg") //todo
+                //.address("Hamburg") //todo
                 .build();
 
         return builder
@@ -110,7 +110,7 @@ public class ConsumerPactTest {
         CustomerDto customerById = serviceUnderTest.getCustomerById(1);
         assert "Peter".equals(customerById.getFirstname());
         assert "Hermes".equals(customerById.getLastname());
-//        assert "Hamburg".equals(customerById.getAddress());
+       // assert "Hamburg".equals(customerById.getAddress()); // todo
 
         assertThatCode(
                 () -> serviceUnderTest.getCustomerById(1))

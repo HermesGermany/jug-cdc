@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 public class CustomerDto {
   private String firstname;
   private String lastname;
-  //    private String address; //todo
+//      private String address; //todo
 }
