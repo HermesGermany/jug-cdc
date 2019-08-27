@@ -24,7 +24,7 @@
 		<java.version>1.8</java.version>
         <pact.version>3.5.20</pact.version>
         <pact.consumer.version>1.1.1</pact.consumer.version>
-        <pact.tag>dev</pact.tag>
+        <pact.tag>master</pact.tag>
 	</properties>
 
 	<dependencies>
