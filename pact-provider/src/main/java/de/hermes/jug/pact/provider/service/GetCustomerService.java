@@ -1,5 +1,6 @@
 package de.hermes.jug.pact.provider.service;
 
+import de.hermes.jug.pact.provider.conversion.CustomerConverter;
 import de.hermes.jug.pact.provider.entity.Customer;
 import de.hermes.jug.pact.provider.exception.CustomerNotFoundException;
 import de.hermes.jug.pact.provider.repository.CustomerRepository;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public class GetCustomerService {
 
   private CustomerRepository customerRepository;
-  private ConversionService conversionService;
+  private CustomerConverter conversionService;
 
   public CustomerDto getCustomerById(int id) {
     Optional<Customer> customer = customerRepository.findById(id);
@@ -23,7 +24,7 @@ public class GetCustomerService {
       throw new CustomerNotFoundException();
     }
 
-    CustomerDto customerDto = conversionService.convert(customer.get(), CustomerDto.class);
+    CustomerDto customerDto = conversionService.convert(customer.get());
     return customerDto;
   }
 }
